@@ -10,18 +10,17 @@
 #    Zugangsprofil dieses Profil berühren (siehe CLAUDE.md, offene Punkte) — auf
 #    einem Standard-Gerät unkritisch.
 #
-# Voraussetzung (Zugangsdaten nur über Umgebung):
+# Voraussetzung (Zugangsdaten nur über die Umgebung — beide Werkzeuge lesen sie selbst):
 #   export FRITZ_USER="dein-box-benutzer"
-#   export FRITZ_PASSWORD="…"
-#   export FRITZ_URL="http://fritz.box"     # optional
+#   export FRITZ_PASSWORD="…"                 # sonst verdeckt (getpass) abgefragt
+#   export FRITZ_URL="http://fritz.box"       # optional
 #
 # Aufruf:  examples/demo-alle-kanaele.sh <MAC|IP|Name>
 
 set -euo pipefail
 cd "$(dirname "$0")/.."
 DEV="${1:?Aufruf: examples/demo-alle-kanaele.sh <MAC|IP|Name>}"
-UI() { printf '%s\n' "${FRITZ_PASSWORD:-}" | python3 contrib/fritz_ui.py \
-         --url "${FRITZ_URL:-http://fritz.box}" --user "${FRITZ_USER:-}" "$@"; }
+UI() { python3 contrib/fritz_ui.py "$@"; }      # liest FRITZ_* aus der Umgebung, kein Pipe
 
 echo "=================== SCHREIBKANÄLE ==================="
 
