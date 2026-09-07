@@ -49,7 +49,9 @@ erneut an der Hardware überprüft. **Aus keiner davon wurde Quellcode kopiert.*
 | Quelle | Was sie beitrug |
 |---|---|
 | [AVM — Schnittstellen (TR-064 / AHA-HTTP)](https://avm.de/service/schnittstellen/) | stellte fest, was TR-064 *nicht* kann |
-| [Gist von **Garfonso**, „Manipulate FritzBox 6490 hosts lists using data.lua" (2020)](https://gist.github.com/Garfonso/9b5bbc0ade86ad82185edf3208c72017) | Existenz und grobe Form der Legacy-`edit_device`-Formularfelder — **ohne Lizenzangabe, also nichts kopiert** |
+| [Garfonso — „Manipulate FritzBox 6490 (and maybe other) hosts lists" (Gist, 17.05.2020)](https://gist.github.com/Garfonso/9b5bbc0ade86ad82185edf3208c72017) | Node.js/axios, MD5-Login; die `updateDevice`-Methode mit den `edit_device`-Feldern (`dev_name`, `dev_ip`, `static_dhcp=on`, `kisi_profile`, `back_to_page`, `validate=btn_save`) — **ohne Lizenzangabe, also nichts kopiert** |
+| [fritzbox-api (npm)](https://www.npmjs.com/package/fritzbox-api) | PBKDF2-Login ab FRITZ!OS 7.24 mit MD5-Fallback, `data.lua` parametrisiert |
+| [PaulPetring/FritzBox](https://github.com/PaulPetring/FritzBox) | `data.lua`-POST für aktive/passive Geräte; `cgi-bin/firmwarecfg` als Konfig-Weg |
 | [administrator.de — „DHCP-Umzug auf Fritz!Box" (2025)](https://administrator.de/forum/dhcp-server-fritzbox-netzwerk-umzug-675349.html) | erster Hinweis, dass `/api/v0/generic/landevice/landevice` existiert und einen `AVM-SID`-Header nimmt |
 | [jens-maus/hm_pdetect, Issue #4](https://github.com/jens-maus/hm_pdetect/issues/4) (2015) | die `query.lua`-Syntax `landevice:settings/landevice/list(...)` |
 | [kbr/fritzconnection](https://github.com/kbr/fritzconnection) | bestätigte, dass TR-064 keine Aktion für feste Leases hat |
