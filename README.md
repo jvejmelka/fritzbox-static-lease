@@ -103,6 +103,17 @@ Verifikation widerspricht.
 `pin` ist idempotent — ist das Flag schon gesetzt, meldet es das und gibt `0`
 zurück; sicher in Cron oder Ansible.
 
+## Beispiele
+
+In [`examples/`](examples/):
+
+- [`pin-with-fallback.sh`](examples/pin-with-fallback.sh) — praktischer Einsatz in
+  einem Skript: **REST → data.lua → Playwright-UI**, automatischer Fallback, jeder
+  Schritt selbstverifizierend über die Exit-Codes.
+- [`demo-alle-kanaele.sh`](examples/demo-alle-kanaele.sh) — führt **alle sechs Wege**
+  einmal aus (3 Schreibkanäle, 3 unabhängige Leser), zum Nachvollziehen auf einem
+  eigenen Testgerät.
+
 ## Verifikation
 
 Jeder Schreibvorgang wird aus einem *anderen* Kanal zurückgelesen als dem, mit dem
