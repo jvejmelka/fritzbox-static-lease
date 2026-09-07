@@ -28,10 +28,13 @@ Vorwarnung brechen und ist von keinem Support abgedeckt.
 
 Iterativ, im Dialog mit einem LLM (Claude), gegen ein laufendes Gerät:
 Hypothese → Probe → Fehler lesen → nachjustieren. „Vibe-coded", wenn man so will —
-mit der wichtigen Einschränkung, dass das Modell diese Endpunkte **nicht** kannte
-und nicht kennen konnte: sie sind undokumentiert und in dieser Form in keinem
-Trainingskorpus. Jede Aussage in der README trägt, weil sie ausgeführt und
-gegengelesen wurde, nicht weil sie richtig klang.
+mit der wichtigen Einschränkung, dass das Modell die **entscheidende Route** nicht
+kannte. Was aus öffentlichen Quellen stammte (die `data.lua`-Feldnamen, die
+`query.lua`-Syntax, die Existenz von `api/v0`), ist unter „Herangezogene Quellen"
+belegt und wurde **per Suche gefunden, nicht aus dem Gedächtnis**; die
+Update-Adressierung `/api/v0/generic/landevice/landevice/<UID>` auf FRITZ!OS 8.x
+fand sich in keiner davon und kam aus den Läufen. Jede Aussage in der README trägt,
+weil sie ausgeführt und gegengelesen wurde, nicht weil sie richtig klang.
 
 Der Fehlermodus, gegen den das absichert, ist es wert benannt zu werden, weil er
 während der Entwicklung wiederholt auftrat: eine selbstsichere, flüssige, falsche
