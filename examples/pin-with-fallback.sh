@@ -24,17 +24,24 @@ DEV="${1:?Aufruf: examples/pin-with-fallback.sh <MAC|IP|Name>}"
 # Verifikation widersprach. Nur die 2 rechtfertigt den nächsten Kanal — bei 1 nutzen alle
 # drei Kanäle dieselben Zugangsdaten, ein Fallback (samt Browser-Start) wäre sinnlos.
 
+# Bewusst die explizite if-Form, nicht `[[ … ]] && exit`: letzteres funktioniert unter
+# set -e nur dank der &&-Listen-Ausnahme und wird zur stillen Abbruchfalle, sobald jemand
+# so eine Zeile ans Ende einer Funktion/Datei verschiebt. Ein Beispiel sollte das nicht vorführen.
+
 echo "[1/3] REST (api/v0) …"
 rc=0; ./fritz_lease.py pin "$DEV" || rc=$?
-[[ $rc -eq 0 ]] && exit 0
-[[ $rc -eq 1 ]] && { echo "Abbruch: Fehler (Login/Gerät), kein Kanalproblem — Fallback sinnlos."; exit 1; }
+if [[ $rc -eq 0 ]]; then exit 0; fi
+if [[ $rc -eq 1 ]]; then echo "Abbruch: Fehler (Login/Gerät), kein Kanalproblem — Fallback sinnlos."; exit 1; fi
 
-echo "[2/3] Verifikation widersprach — Fallback data.lua (browserlos) …"
+echo "[2/3] Verifikation widersprach (Exit 2) — Fallback data.lua (browserlos) …"
 rc=0; ./fritz_lease.py --via datalua pin "$DEV" || rc=$?
-[[ $rc -eq 0 ]] && exit 0
-[[ $rc -eq 1 ]] && { echo "Abbruch: Fehler."; exit 1; }
+if [[ $rc -eq 0 ]]; then exit 0; fi
+if [[ $rc -eq 1 ]]; then echo "Abbruch: Fehler."; exit 1; fi
 
-echo "[3/3] data.lua widersprach — letzte Rückfallebene Playwright-UI …"
+echo "[3/3] data.lua widersprach (Exit 2) — letzte Rückfallebene Playwright-UI …"
+# Kein Exit-Code-Abfang hier, und das ist Absicht: schlägt fritz_ui.py fehl, bricht set -e
+# das Skript ab und die Verifikation unten läuft bewusst nicht mehr — der UI-Weg war die
+# letzte Option, es gäbe keinen weiteren Kanal.
 python3 contrib/fritz_ui.py pin "$DEV"          # liest FRITZ_URL/USER/PASSWORD selbst aus der Umgebung
 
 # Ein Klick ist kein Speichern — unabhängig über REST/query.lua gegenlesen:
