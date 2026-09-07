@@ -1,0 +1,5 @@
+# Mit LLM „vibe-coded“, automatisch von Claude erstellt & veröffentlicht. Siehe PROVENANCE.md
+# one MAC (preferred) or IP per line; everything after # is a comment
+AA:BB:CC:DD:EE:FF   # NAS
+11:22:33:44:55:66   # printer
+192.168.178.50      # works too, but MAC survives a device reset

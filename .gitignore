@@ -1,0 +1,15 @@
+# Mit LLM „vibe-coded“, automatisch von Claude erstellt & veröffentlicht. Siehe PROVENANCE.md
+
+credentials*
+*.env
+.env
+fritzbox*.txt
+*.har
+leases.txt
+# never commit credentials or captured traffic
+*.png
+*.pyc
+__pycache__/
+*.py[cod]
+.venv/
+venv/

@@ -1,0 +1,4 @@
+# Mit LLM „vibe-coded“, automatisch von Claude erstellt & veröffentlicht. Siehe PROVENANCE.md
+requests>=2.28
+# optional, only for contrib/fritz_ui.py:
+# playwright>=1.40
